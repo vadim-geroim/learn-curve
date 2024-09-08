@@ -28,6 +28,21 @@ const resolvers = {
 
       return { token: createToken(user) };
     },
+    async login(_, { email, password }) {
+      const user = await prisma.user.findUnique({ where: { email } });
+
+      if (!user) {
+        throw new Error("User not found");
+      }
+
+      const valid = await bcrypt.compare(password, user.password);
+
+      if (!valid) {
+        throw new Error("Invalid password");
+      }
+
+      return { token: createToken(user) };
+    },
   },
 };
 
