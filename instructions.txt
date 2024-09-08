@@ -1,3 +1,5 @@
 
 //This command will generate the dev.db file (your SQLite database) and apply the User model to it.
 npx prisma migrate dev --name init
+//After the migration, generate the Prisma client so it can be used in your application:
+npx prisma generate

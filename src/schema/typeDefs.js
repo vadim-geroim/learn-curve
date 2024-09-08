@@ -6,7 +6,11 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    _: String
+    singUp(name: String!, email: String!, password: String!): AuthPayload
+  }
+
+  type AuthPayload {
+    token: String!
   }
 `;
 
